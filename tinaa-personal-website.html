@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinaa Joshi — Conversational AI &amp; Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#8B9D83;
+    --ink:#2B2B28;
+    --sand:#F0EBE1;
+    --clay:#B9714B;
+    --gold:#C9A35C;
+    --paper:#FAF7F1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,247,241,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(43,43,40,0.08);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:72px;}
+  .logo{font-family:'Fraunces',serif;font-size:20px;font-weight:600;}
+  .navlinks{display:flex;gap:36px;font-size:14px;font-weight:500;}
+  .navlinks a{opacity:0.75;transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+
+  /* HERO */
+  .hero{
+    padding:120px 0 100px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--clay);
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:54px;
+    line-height:1.08;
+    margin-bottom:24px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--sage);
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:rgba(43,43,40,0.72);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:4px;
+    font-size:14px;
+    font-weight:600;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(43,43,40,0.2);}
+  .btn-ghost{border:1.5px solid rgba(43,43,40,0.25);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* SIGNATURE: conversation thread */
+  .thread{
+    background:var(--sand);
+    border-radius:18px;
+    padding:28px;
+    position:relative;
+  }
+  .thread::before{
+    content:'';
+    position:absolute;
+    top:-14px;left:32px;
+    width:0;height:0;
+    border-left:14px solid transparent;
+    border-right:14px solid transparent;
+    border-bottom:14px solid var(--sand);
+  }
+  .bubble{
+    max-width:84%;
+    padding:13px 18px;
+    border-radius:14px;
+    font-size:14.5px;
+    margin-bottom:14px;
+    animation:rise 0.6s ease backwards;
+  }
+  .bubble:last-child{margin-bottom:0;}
+  .bubble.user{
+    background:#fff;
+    border:1px solid rgba(43,43,40,0.1);
+    border-bottom-left-radius:4px;
+  }
+  .bubble.bot{
+    background:var(--sage);
+    color:#fff;
+    margin-left:auto;
+    border-bottom-right-radius:4px;
+  }
+  .bubble.draft{
+    background:transparent;
+    border:1.5px dashed var(--clay);
+    color:var(--clay);
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:8px 14px;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .bubble:nth-child(1){animation-delay:.1s;}
+  .bubble:nth-child(2){animation-delay:.4s;}
+  .bubble:nth-child(3){animation-delay:.7s;}
+  .bubble:nth-child(4){animation-delay:1s;}
+
+  /* SECTION shared */
+  section{padding:90px 0;}
+  .section-head{margin-bottom:56px;max-width:640px;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:36px;}
+  .section-head p{color:rgba(43,43,40,0.65);font-size:16px;margin-top:14px;}
+
+  /* ABOUT */
+  .about{background:var(--ink);color:var(--paper);}
+  .about .eyebrow{color:var(--gold);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .about p{color:rgba(250,247,241,0.78);font-size:16.5px;margin-bottom:18px;}
+  .about-stats{display:flex;gap:40px;margin-top:32px;}
+  .stat-num{font-family:'Fraunces',serif;font-size:34px;color:var(--gold);}
+  .stat-label{font-size:12.5px;color:rgba(250,247,241,0.6);margin-top:4px;}
+
+  /* WORK / WHAT I DO */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .card{
+    background:var(--sand);
+    border-radius:14px;
+    padding:32px 28px;
+    transition:transform .25s;
+  }
+  .card:hover{transform:translateY(-4px);}
+  .card .num{
+    font-family:'Fraunces',serif;
+    font-size:14px;
+    color:var(--clay);
+    margin-bottom:16px;
+  }
+  .card h3{font-size:19px;margin-bottom:10px;}
+  .card p{font-size:14.5px;color:rgba(43,43,40,0.68);}
+
+  /* JOURNEY */
+  .journey-row{
+    display:flex;
+    border-top:1px solid rgba(43,43,40,0.12);
+    padding:24px 0;
+    gap:32px;
+    align-items:baseline;
+  }
+  .journey-row:last-child{border-bottom:1px solid rgba(43,43,40,0.12);}
+  .journey-year{font-family:'Fraunces',serif;font-size:18px;width:90px;flex-shrink:0;color:var(--clay);}
+  .journey-text{font-size:15.5px;color:rgba(43,43,40,0.78);}
+  .journey-text strong{color:var(--ink);}
+
+  /* CONTACT */
+  .contact{background:var(--sage);color:#fff;text-align:center;}
+  .contact h2{font-size:38px;margin-bottom:18px;color:#fff;}
+  .contact p{font-size:17px;opacity:0.92;max-width:480px;margin:0 auto 36px;}
+  .contact .btn-primary{background:#fff;color:var(--ink);}
+
+  footer{padding:36px 0;text-align:center;font-size:13px;color:rgba(43,43,40,0.5);}
+
+  @media(max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+    .about-grid{grid-template-columns:1fr;}
+    .grid3{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Tinaa Joshi</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">What I Do</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Conversational AI &amp; Workflow Design</div>
+      <h1>I write the words<br>your AI <em>actually</em><br>needed to say.</h1>
+      <p class="lede">Blending a decade in tech, a grounding in psychology and wellness, and hands-on AI fluency — to help small businesses sound human, even when a bot is talking.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Work with me</a>
+        <a href="#work" class="btn btn-ghost">See what I do</a>
+      </div>
+    </div>
+    <div class="thread">
+      <div class="bubble user">"Do you offer one-on-one sessions or just group classes?"</div>
+      <div class="bubble draft">— generic bot reply —</div>
+      <div class="bubble user" style="opacity:0.4;font-size:13px;">"We offer both group and individual sessions."</div>
+      <div class="bubble bot">Both, actually! Most people start in a small group to ease in, then move 1:1 once they know what they need. Want me to show you this week's slots?</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">About</div>
+      <h2>From bot scripts to business backbones.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>In 2017, I was handed a quietly unusual brief: predict what a person might ask a chatbot, in every phrasing they might use, and write back in a way that didn't feel like talking to a wall. I mapped intent. I trained tone. I learned, early, that good AI conversation is mostly good listening, written down.</p>
+        <p>That instinct never left — even through a decade in IT, a UI/UX diploma, a nutrition certification, and an ongoing psychology degree. Today I bring all of it back to the same table: using AI tools to help small, independent businesses sound like themselves — clear, warm, and present — at every customer touchpoint.</p>
+      </div>
+      <div>
+        <p>I work behind the scenes, by design. You don't need another person on another call. You need flows that work, scripts that sound right, and a system that frees up your time — delivered quietly, so you can stay focused on your own clients.</p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">2017</div>
+            <div class="stat-label">First conversational<br>AI project</div>
+          </div>
+          <div>
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Years across IT,<br>UX &amp; people systems</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What I Do</div>
+      <h2>Three ways I help you sound human.</h2>
+      <p>Built for solo and small business owners — yoga teachers, nutritionists, caterers, coaches, and creators who don't have time to manage another tool.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Conversation &amp; Bot Scripting</h3>
+        <p>I rewrite robotic chatbot replies and FAQ flows into natural, on-brand conversations — anticipating how your customers actually ask, not how a manual assumes they will.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>AI Workflow Setup</h3>
+        <p>Auto-responders, booking confirmations, lead follow-ups — built once using AI tools, so they keep running quietly in the background while you focus on clients.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Prompt &amp; Content Refinement</h3>
+        <p>If you're using AI tools but the output feels flat or off-brand, I refine the prompts and structure so what comes out sounds like you, not a template.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey" style="background:var(--sand);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Journey</div>
+      <h2>A path that kept circling back to one thing.</h2>
+    </div>
+    <div class="journey-list">
+      <div class="journey-row">
+        <div class="journey-year">2017</div>
+        <div class="journey-text"><strong>Conversational AI design</strong> — wrote and trained chatbot dialogue flows, mapping real user intent to natural responses.</div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-year">2010s</div>
+        <div class="journey-text"><strong>A decade in IT</strong> — HR, project management, and systems work that taught me how businesses actually run.</div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-year">2021</div>
+        <div class="journey-text"><strong>UI/UX diploma</strong> — formal training in how people actually use the things we build for them.</div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-year">Ongoing</div>
+        <div class="journey-text"><strong>Psychology &amp; wellness</strong> — an RYT200 yoga certification, a nutrition diploma, and continued study of human behaviour, all feeding back into how I write for people.</div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-year">Now</div>
+        <div class="journey-text"><strong>Back to AI</strong> — building with today's tools, full circle, with everything in between folded in.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Got a bot that needs a better voice?</h2>
+    <p>Tell me what you're working on — I'll tell you honestly whether I can help.</p>
+    <a href="mailto:hello@tinaajoshi.com" class="btn btn-primary">Say hello</a>
+  </div>
+</section>
+
+<footer>© 2026 Tinaa Joshi · Conversational AI &amp; Workflow Design</footer>
+
+</body>
+</html>
